@@ -1,5 +1,6 @@
 package com.kusitms.finit.certification;
 
+import com.kusitms.finit.certification.dto.GetCertificationListRes;
 import com.kusitms.finit.certification.dto.GetCertificationRes;
 import com.kusitms.finit.challenge.ChallengeService;
 import com.kusitms.finit.challenge.dto.TodayChallengeRes;
@@ -22,6 +23,12 @@ public class CertificationController {
     @GetMapping("/certification/{certification_id}")
     public DataResponse<GetCertificationRes> getCertificationById(@PathVariable("certification_id") Long certification_id) {
         GetCertificationRes res = certificationService.getCertificationById(certification_id);
+        return responseService.getDataResponse(res);
+    }
+
+    @GetMapping("/certification/feed/{challenge_id}")
+    public DataResponse<List<GetCertificationListRes>> getCertificationByChallengeId(@PathVariable("challenge_id") Long challenge_id) {
+        List<GetCertificationListRes> res = certificationService.getCertificationByChallengeId(challenge_id);
         return responseService.getDataResponse(res);
     }
 

@@ -2,6 +2,7 @@ package com.kusitms.finit.certification;
 
 import com.kusitms.finit.account.AccountRepository;
 import com.kusitms.finit.account.entity.Account;
+import com.kusitms.finit.certification.dto.GetCertificationListRes;
 import com.kusitms.finit.certification.dto.GetCertificationRes;
 import com.kusitms.finit.challenge.ChallengeDao;
 import com.kusitms.finit.challenge.dto.TodayChallengeRes;
@@ -28,4 +29,8 @@ public class CertificationService {
         return getCertificationRes;
     }
 
+    public List<GetCertificationListRes> getCertificationByChallengeId(Long challenge_id) {
+        List<GetCertificationListRes> getCertificationListResList = certificationDao.selectCertificationByChallengeId(challenge_id);
+        return getCertificationListResList;
+    }
 }
