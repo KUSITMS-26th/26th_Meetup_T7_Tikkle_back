@@ -33,4 +33,10 @@ public class CertificationService {
         List<GetCertificationListRes> getCertificationListResList = certificationDao.selectCertificationByChallengeId(challenge_id);
         return getCertificationListResList;
     }
+
+    public List<GetCertificationListRes> getCertificationLike(Long challenge_id) {
+        List<GetCertificationListRes> getCertificationListResList = certificationDao.selectCertificationLike(challenge_id);
+        return getCertificationListResList;
+    }
+
 }

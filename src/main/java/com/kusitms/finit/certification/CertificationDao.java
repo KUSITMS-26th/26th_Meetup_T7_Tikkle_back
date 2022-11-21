@@ -58,4 +58,21 @@ public class CertificationDao {
                 selectCertificationByCategoryParam);
 
     }
+
+    public List<GetCertificationListRes> selectCertificationLike(Long challenge_id) {
+        String selectCertificationByCategoryQuery = "select certification_image, certification.title, content\n" +
+                "from certification, challenge_detail, challenge\n" +
+                "where certification.challenge_detail_id = challenge_detail.challenge_detail_id\n" +
+                "and challenge_detail.challenge_id = challenge.challenge_id\n" +
+                "and challenge.challenge_id = ?\n" +
+                "order by likes desc;";
+        long selectCertificationByCategoryParam = challenge_id;
+
+        return this.jdbcTemplate.query(selectCertificationByCategoryQuery,
+                (rs, rowNum) -> new GetCertificationListRes(
+                        rs.getString("certification_image"),
+                        rs.getString("title"),
+                        rs.getString("content")),
+                selectCertificationByCategoryParam);
+    }
 }

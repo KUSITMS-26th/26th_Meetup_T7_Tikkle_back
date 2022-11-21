@@ -32,4 +32,9 @@ public class CertificationController {
         return responseService.getDataResponse(res);
     }
 
+    @GetMapping("/certification/like/{challenge_id}")
+    public DataResponse<List<GetCertificationListRes>> getCertificationLike(@PathVariable("challenge_id") Long challenge_id) {
+        List<GetCertificationListRes> res = certificationService.getCertificationLike(challenge_id);
+        return responseService.getDataResponse(res);
+    }
 }
